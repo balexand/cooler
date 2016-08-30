@@ -17,6 +17,7 @@ defmodule Cooler.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    post "/toggle", CoolerController, :toggle
   end
 
   # Other scopes may use custom stacks.
