@@ -10,7 +10,8 @@ defmodule Cooler do
     children = [
       supervisor(Cooler.Endpoint, []),
 
-      worker(Gpio, [4, :output, name: :pump_relay]),
+      worker(Gpio, [4, :output, [name: :pump_relay]]),
+      worker(Gpio, [17, :output, [name: :motor_relay]]),
       worker(Cooler.CoolerControl, []),
     ]
 
