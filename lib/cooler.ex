@@ -8,9 +8,10 @@ defmodule Cooler do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the endpoint when the application starts
       supervisor(Cooler.Endpoint, []),
-      # Start your own worker by calling: Cooler.Worker.start_link(arg1, arg2, arg3)
+
+      worker(Gpio, [4, :output, [name: :pump_relay]]),
+      worker(Gpio, [17, :output, [name: :motor_relay]], id: :motor_gpio),
       worker(Cooler.CoolerControl, []),
     ]
 
