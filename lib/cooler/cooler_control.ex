@@ -25,7 +25,7 @@ defmodule Cooler.CoolerControl do
     {:reply, state.on_or_off, state}
   end
 
-  def handle_call(:toggle, _from, %{on_or_off: :off, timer: timer}) do
+  def handle_call(:toggle, _from, %{on_or_off: :off, timer: _}) do
     Gpio.write(:pump_relay, 0)
 
     timer = Process.send_after self, :start_motor, @pad_wetting_timeout
