@@ -1,0 +1,2 @@
+defmodule CoolerFw do
+end
