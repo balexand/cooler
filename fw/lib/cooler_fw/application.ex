@@ -8,7 +8,6 @@ defmodule CoolerFw.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # worker(CoolerFw.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

@@ -20,6 +20,9 @@ config :shoehorn,
   init: [:nerves_runtime],
   app: Mix.Project.config()[:app]
 
+# Import gitignored file containing hardcoded wifi config
+import_config "wifi.exs"
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
