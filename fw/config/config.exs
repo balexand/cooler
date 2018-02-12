@@ -30,6 +30,16 @@ config :nerves_init_gadget,
   node_name: nil,
   node_host: :mdns_domain
 
+config :cooler, CoolerWeb.Endpoint,
+  url: [host: "localhost"],
+  http: [port: 80],
+  secret_key_base: "bqnE47+fCGCpuSNrLdVCk6IQL7jHhv5RIktAOb6xj43g1Gnq9NRyIVnitAIIFLtF",
+  root: Path.dirname(__DIR__),
+  server: true,
+  render_errors: [view: CoolerWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Nerves.PubSub, adapter: Phoenix.PubSub.PG2],
+  code_reloader: false
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations

@@ -47,7 +47,10 @@ defmodule CoolerFw.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [{:nerves, "~> 0.9", runtime: false}] ++ deps(@target)
+    [
+      {:nerves, "~> 0.9", runtime: false},
+      {:cooler, path: "../cooler"},
+    ] ++ deps(@target)
   end
 
   # Specify target specific dependencies
