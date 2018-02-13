@@ -11,7 +11,7 @@ defmodule Cooler.Application do
       # Start the endpoint when the application starts
       supervisor(CoolerWeb.Endpoint, []),
       # Start your own worker by calling: Cooler.Worker.start_link(arg1, arg2, arg3)
-      # worker(Cooler.Worker, [arg1, arg2, arg3]),
+      worker(Cooler.PowerController, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
