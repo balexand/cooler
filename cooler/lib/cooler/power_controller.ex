@@ -16,7 +16,7 @@ defmodule Cooler.PowerController do
       %{s | mode: :off}
     end
 
-    def wetting_complete(%__MODULE__{mode: :wetting} = s), do: %{s | mode: :on}
+    def wetting_complete(%__MODULE__{mode: :wetting} = s), do: %{s | mode: :on, wetting_timer_ref: nil}
     def wetting_complete(%__MODULE__{} = s), do: s
   end
 
@@ -48,8 +48,9 @@ defmodule Cooler.PowerController do
     state = state
     |> cancel_timer
     |> State.toggle
-    |>  set_wetting_timer
+    |> set_wetting_timer
 
+    broadcast_state(state)
     set_motor(state)
     set_pump(state)
 
@@ -58,10 +59,16 @@ defmodule Cooler.PowerController do
 
   def handle_info(:wetting_complete, state) do
     state = State.wetting_complete(state)
+
+    broadcast_state(state)
     set_motor(state)
     set_pump(state)
 
     {:noreply, state}
+  end
+
+  defp broadcast_state(%State{}) do
+    # FIXME broadcast message to Phoenix channel
   end
 
   defp cancel_timer(%State{wetting_timer_ref: ref} = s) when is_reference(ref) do

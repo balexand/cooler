@@ -26,7 +26,8 @@ defmodule Cooler.PowerController.StateTest do
   end
 
   test "wetting_complete/1 when :wetting" do
-    assert State.wetting_complete(%State{mode: :wetting}) == %State{mode: :on}
+    assert State.wetting_complete(%State{mode: :wetting, wetting_timer_ref: make_ref()}) ==
+      %State{mode: :on, wetting_timer_ref: nil}
   end
 
   test "wetting_complete/1 when :off" do
