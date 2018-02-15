@@ -23,6 +23,11 @@ defmodule Cooler.PowerController do
   use GenServer
 
   @wetting_delay 30_000
+  @gpio Cooler.GPIO.Dummy # FIXME from config
+  @motor :motor_relay
+  @pump :pump_relay
+  @on 0
+  @off 1
 
   ###
   # Client API
@@ -32,8 +37,12 @@ defmodule Cooler.PowerController do
     GenServer.start_link(__MODULE__, nil, Keyword.put_new(opts, :name, __MODULE__))
   end
 
+  def mode do
+    GenServer.call(__MODULE__, :mode)
+  end
+
   def toggle do
-    # FIXME
+    GenServer.call(__MODULE__, :toggle)
   end
 
   ###
@@ -41,7 +50,14 @@ defmodule Cooler.PowerController do
   ###
 
   def init(nil) do
+    @gpio.write(@motor, @off)
+    @gpio.write(@pump,  @off)
+
     {:ok, %State{}}
+  end
+
+  def handle_call(:mode, _from, %State{mode: mode} = state) do
+    {:reply, mode, state}
   end
 
   def handle_call(:toggle, _from, state) do
@@ -54,7 +70,7 @@ defmodule Cooler.PowerController do
     set_motor(state)
     set_pump(state)
 
-    {:reply, nil, state}
+    {:reply, :ok, state}
   end
 
   def handle_info(:wetting_complete, state) do
@@ -85,8 +101,8 @@ defmodule Cooler.PowerController do
 
   defp set_wetting_timer(%State{} = s), do: s
 
-  defp set_motor(%State{mode: :on}), do: nil # FIXME motor on
-  defp set_motor(%State{}),          do: nil # FIXME motor off
-  defp set_pump(%State{mode: :off}), do: nil # FIXME pump off
-  defp set_pump(%State{}),           do: nil # FIXME pump on
+  defp set_motor(%State{mode: :on}), do: @gpio.write(@motor, @on)
+  defp set_motor(%State{}),          do: @gpio.write(@motor, @off)
+  defp set_pump(%State{mode: :off}), do: @gpio.write(@pump,  @off)
+  defp set_pump(%State{}),           do: @gpio.write(@pump,  @on)
 end

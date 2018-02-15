@@ -1,6 +1,8 @@
 defmodule Cooler.Application do
   use Application
 
+  @gpio Cooler.GPIO.Dummy # FIXME from config
+
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
@@ -8,9 +10,9 @@ defmodule Cooler.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the endpoint when the application starts
       supervisor(CoolerWeb.Endpoint, []),
-      # Start your own worker by calling: Cooler.Worker.start_link(arg1, arg2, arg3)
+      worker(@gpio, [ 4, :output, [name:  :pump_relay]], id: :pump_gpio),
+      worker(@gpio, [17, :output, [name: :motor_relay]], id: :motor_gpio),
       worker(Cooler.PowerController, []),
     ]
 

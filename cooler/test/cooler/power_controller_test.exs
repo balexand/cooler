@@ -1,7 +1,39 @@
 defmodule Cooler.PowerControllerTest do
+  alias Cooler.PowerController
+
+  @gpio Cooler.GPIO.Dummy # FIXME from config
+  @motor :motor_relay
+  @pump :pump_relay
+  @on 0
+  @off 1
+
   use ExUnit.Case
 
-  # FIXME quick test drive
+  test "integration test with side effects" do
+    assert PowerController.mode == :off
+    assert @gpio.get_value(@motor) == @off
+    assert @gpio.get_value(@pump) == @off
+
+    :ok = PowerController.toggle
+    assert PowerController.mode == :wetting
+    assert @gpio.get_value(@motor) == @off
+    assert @gpio.get_value(@pump) == @on
+
+    :ok = PowerController.toggle
+    assert PowerController.mode == :off
+    assert @gpio.get_value(@motor) == @off
+    assert @gpio.get_value(@pump) == @off
+
+    :ok = PowerController.toggle
+    assert PowerController.mode == :wetting
+    assert @gpio.get_value(@motor) == @off
+    assert @gpio.get_value(@pump) == @on
+
+    send PowerController, :wetting_complete
+    assert PowerController.mode == :on
+    assert @gpio.get_value(@motor) == @on
+    assert @gpio.get_value(@pump) == @on
+  end
 end
 
 defmodule Cooler.PowerController.StateTest do
