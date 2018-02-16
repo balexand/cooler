@@ -1,0 +1,52 @@
+# Generated on crash by the VM
+erl_crash.dump
+
+# Generated on crash by NPM
+npm-debug.log
+
+###
+# /cooler
+###
+
+# App artifacts
+/cooler/_build
+/cooler/db
+/cooler/deps
+/cooler/*.ez
+
+# Static artifacts
+/cooler/assets/node_modules
+
+# Since we are building assets from assets/,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/cooler/priv/static/
+
+# Files matching config/*.secret.exs pattern contain sensitive
+# data and you should not commit them into version control.
+#
+# Alternatively, you may comment the line below and commit the
+# secrets files as long as you replace their contents by environment
+# variables.
+/cooler/config/*.secret.exs
+
+###
+# /fw
+###
+
+# The directory Mix will write compiled artifacts to.
+/fw/_build/
+
+# If you run "mix test --cover", coverage assets end up here.
+/fw/cover/
+
+# The directory Mix downloads your dependencies sources to.
+/fw/deps/
+
+# Where 3rd-party dependencies like ExDoc output generated docs.
+/fw/doc/
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+/fw/.fetch
+
+/fw/config/wifi.exs
