@@ -15,6 +15,12 @@ defmodule CoolerWeb.CoolerChannel do
     {:noreply, socket}
   end
 
+  def handle_in("toggle", %{}, socket) do
+    Cooler.PowerController.toggle
+
+    {:noreply, socket}
+  end
+
   def handle_out("state", payload, socket) do
     push_state(payload, socket)
 
