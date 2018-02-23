@@ -2,7 +2,7 @@ defmodule CoolerWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", CoolerWeb.RoomChannel
+  channel "cooler", CoolerWeb.CoolerChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

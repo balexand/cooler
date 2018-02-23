@@ -83,8 +83,9 @@ defmodule Cooler.PowerController do
     {:noreply, state}
   end
 
-  defp broadcast_state(%State{}) do
-    # FIXME broadcast message to Phoenix channel
+  defp broadcast_state(%State{mode: mode}) do
+    # NOTE hardcoded dependency from Cooler to CoolerWeb not ideal
+    CoolerWeb.Endpoint.broadcast!("cooler", "state", %{mode: mode})
   end
 
   defp cancel_timer(%State{wetting_timer_ref: ref} = s) when is_reference(ref) do

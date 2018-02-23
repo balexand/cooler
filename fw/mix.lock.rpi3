@@ -3,6 +3,7 @@
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], [], "hexpm"},
   "distillery": {:hex, :distillery, "1.5.2", "eec18b2d37b55b0bcb670cf2bcf64228ed38ce8b046bb30a9b636a6f5a4c0080", [:mix], [], "hexpm"},
   "dns": {:hex, :dns, "1.0.1", "1d88187fdf564d937cee202949141090707fd0c9d7fcae903a6878ef24ef5d1e", [:mix], [{:socket, "~> 0.3.12", [hex: :socket, repo: "hexpm", optional: false]}], "hexpm"},
+  "elixir_ale": {:hex, :elixir_ale, "1.0.2", "f2b7cadf3d1e2adc67201ef4e725e18f3ee5ff37b80ccb7f1bb812f0f765356d", [:make, :mix], [{:elixir_make, "~> 0.4", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
   "elixir_make": {:hex, :elixir_make, "0.4.0", "992f38fabe705bb45821a728f20914c554b276838433349d4f2341f7a687cddf", [:mix], [], "hexpm"},
   "gettext": {:hex, :gettext, "0.14.0", "1a019a2e51d5ad3d126efe166dcdf6563768e5d06c32a99ad2281a1fa94b4c72", [:mix], [], "hexpm"},
   "mdns": {:hex, :mdns, "0.1.7", "7b949773ff5809bb720256171767db1c9bf21eea477128b361a92b0c5e6af220", [:mix], [{:dns, "~> 1.0", [hex: :dns, repo: "hexpm", optional: false]}], "hexpm"},

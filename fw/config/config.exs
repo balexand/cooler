@@ -37,8 +37,9 @@ config :cooler, CoolerWeb.Endpoint,
   root: Path.dirname(__DIR__),
   server: true,
   render_errors: [view: CoolerWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Nerves.PubSub, adapter: Phoenix.PubSub.PG2],
-  code_reloader: false
+  pubsub: [name: Cooler.PubSub, adapter: Phoenix.PubSub.PG2],
+  code_reloader: false,
+  check_origin: false
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
