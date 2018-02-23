@@ -8,3 +8,5 @@ config :cooler, CoolerWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :cooler, :gpio, Cooler.GPIO.Dummy

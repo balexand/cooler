@@ -1,7 +1,7 @@
 defmodule Cooler.Application do
   use Application
 
-  @gpio Cooler.GPIO.Dummy # FIXME from config
+  @gpio Application.get_env(:cooler, :gpio)
 
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications

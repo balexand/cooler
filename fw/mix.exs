@@ -48,6 +48,7 @@ defmodule CoolerFw.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:elixir_ale, "~> 1.0"},
       {:nerves, "~> 0.9", runtime: false},
       {:cooler, path: "../cooler"},
     ] ++ deps(@target)

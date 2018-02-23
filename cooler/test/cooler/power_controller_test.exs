@@ -1,7 +1,7 @@
 defmodule Cooler.PowerControllerTest do
   alias Cooler.PowerController
 
-  @gpio Cooler.GPIO.Dummy # FIXME from config
+  @gpio Application.get_env(:cooler, :gpio)
   @motor :motor_relay
   @pump :pump_relay
   @on 0
