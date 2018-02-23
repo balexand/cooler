@@ -1,8 +1,8 @@
 defmodule CoolerWeb.PageControllerTest do
-  use CoolerWeb.ConnCase
+  use CoolerWeb.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    assert html_response(conn, 200)
   end
 end
