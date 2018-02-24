@@ -23,7 +23,7 @@ defmodule Cooler.PowerController do
   use GenServer
 
   @wetting_delay 30_000
-  @gpio Cooler.GPIO.Dummy # FIXME from config
+  @gpio Application.get_env(:cooler, :gpio)
   @motor :motor_relay
   @pump :pump_relay
   @on 0

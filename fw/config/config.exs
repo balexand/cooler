@@ -41,6 +41,8 @@ config :cooler, CoolerWeb.Endpoint,
   code_reloader: false,
   check_origin: false
 
+config :cooler, :gpio, ElixirALE.GPIO
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations
